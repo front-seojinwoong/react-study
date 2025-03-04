@@ -15,7 +15,7 @@ const pageLists = createBrowserRouter([
   { path: "/board1", element: <Board1 /> },
 ])
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as ReactDOM.Container); // as 키워드는 개발자가 컴퓨터에게 type을 알려주는것. as는 자주 쓰는 것이 아님.
 root.render(
   <RouterProvider router={pageLists} />
 );
@@ -24,3 +24,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
