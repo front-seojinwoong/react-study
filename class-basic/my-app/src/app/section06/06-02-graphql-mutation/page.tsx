@@ -3,7 +3,7 @@ import { useMutation, gql } from "@apollo/client";
 
 const 나의그래프큐엘셋팅 = gql`
   mutation {
-    createBoard(writer: 1, title: "안녕하세요제목", contents: 333) {
+    createBoard(writer: "1", title: "안녕하세요제목", contents: 333) {
       _id
       number
       message
