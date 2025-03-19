@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import "../assets/styles/onStyle.css";
 
 const CreateBoard = () => {
   const [writer, setWriter] = useState("");

@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   title: "철수의 홈페이지",
   description: "반갑습니다 철수의 홈페이지에 오신 것을 환영합니다!",
 };
-
 export default function RootLayout(props) {
   return (
     <html lang='en'>

@@ -3,8 +3,6 @@ import icoUser from "../assets/images/common/ico_user.svg";
 import icoShare from "../assets/images/common/ico_share.svg";
 import icoLocation from "../assets/images/common/ico_location.svg";
 
-import "../assets/styles/onStyle.css";
-
 const DetailBoard = () => {
   return (
     <div className="onLayout subPage">

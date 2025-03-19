@@ -1,0 +1,16 @@
+.buttonStyle {
+  border: 1px solid blue;
+  @apply text-greenColor;
+}
+.boxStyle {
+  width: 200px;
+  height: 200px;
+  @apply bg-greenColor;
+}
+.boxStyle2{
+  width: 200px;
+  height: 200px;
+  padding: 30px;
+  @apply bg-blueColor;
+  
+}
