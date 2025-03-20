@@ -33,7 +33,7 @@ export default function StaticRoutingMovedPage() {
       <div>작성자 : {data?.fetchBoard.writer}</div>
       <div>제목 : {data?.fetchBoard.title}</div>
       <div>내용 : {data?.fetchBoard.contents}</div>
-      <Link href={`/section09/09-03-boards/${params.number}/edit`}>
+      <Link href={`/section09/09-04-boards-validation/${params.number}/edit`}>
         수정하러가기
       </Link>
     </div>

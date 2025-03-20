@@ -1,12 +1,39 @@
 "use client";
-
 import { gql, useMutation } from "@apollo/client";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
+const CREATE_BOARD = gql`
+  mutation createBoard($writer: String, $title: String, $contents: String) {
+    createBoard(writer: $writer, title: $title, contents: $contents) {
+      _id
+      number
+      message
+    }
+  }
+`;
+const UPDATE_BOARD = gql`
+  mutation updateBoard(
+    $number: Int
+    $writer: String
+    $title: String
+    $contents: String
+  ) {
+    updateBoard(
+      number: $number
+      writer: $writer
+      title: $title
+      contents: $contents
+    ) {
+      _id
+      number
+      message
+    }
+  }
+`;
 const FETCH_BOARD = gql`
-  query fetchBoard($mynumber: Int) {
-    fetchBoard(number: $mynumber) {
+  query fetchBoard($number: Int) {
+    fetchBoard(number: $number) {
       number
       writer
       title
@@ -17,40 +44,7 @@ const FETCH_BOARD = gql`
   }
 `;
 
-const CREATE_BOARD = gql`
-  mutation createBoard(
-    $myWriter: String
-    $myTitle: String
-    $myContents: String
-  ) {
-    createBoard(writer: $myWriter, title: $myTitle, contents: $myContents) {
-      _id
-      number
-      message
-    }
-  }
-`;
-const UPDATE_BOARD = gql`
-  mutation updateBoard(
-    $myNumber: Int
-    $myWriter: String
-    $myTitle: String
-    $myContents: String
-  ) {
-    updateBoard(
-      number: $myNumber
-      writer: $myWriter
-      title: $myTitle
-      contents: $myContents
-    ) {
-      _id
-      number
-      message
-    }
-  }
-`;
-
-const BoardsWrite = (props) => {
+const BoardWrite = (props) => {
   const router = useRouter();
   const params = useParams();
   const [createBoard] = useMutation(CREATE_BOARD);
@@ -72,9 +66,9 @@ const BoardsWrite = (props) => {
   const onClickSubmit = async () => {
     const result = await createBoard({
       variables: {
-        myWriter: writer,
-        myTitle: title,
-        myContents: contents,
+        writer,
+        title,
+        contents,
       },
     });
     alert("등록이 완료되었습니다!");
@@ -82,21 +76,16 @@ const BoardsWrite = (props) => {
       `/section09/09-04-boards-validation/${result.data.createBoard.number}`
     );
   };
-
   const onClickUpdate = async () => {
-    const myVariables = { myNumber: Number(params.number) };
-
-    if (writer) myVariables.myWriter = writer;
-    if (title) myVariables.myTitle = title;
-    if (contents) myVariables.myContents = contents;
+    const myVariables = { number: Number(params.number) };
+    if (writer) myVariables.writer = writer;
+    if (title) myVariables.title = title;
+    if (contents) myVariables.contents = contents;
 
     const result = await updateBoard({
       variables: myVariables,
       refetchQueries: [
-        {
-          query: FETCH_BOARD,
-          variables: { mynumber: Number(params.number) },
-        },
+        { query: FETCH_BOARD, variables: { number: Number(params.number) } },
       ],
     });
     alert("수정이 완료되었습니다!");
@@ -107,26 +96,27 @@ const BoardsWrite = (props) => {
 
   return (
     <div>
-      작성자 :
+      작성자:{" "}
       <input
         type='text'
         onChange={onChangeWriter}
         defaultValue={props.data?.fetchBoard.writer}
       />
       <br />
-      제목 :
+      제목:{" "}
       <input
         type='text'
         onChange={onChangeTitle}
         defaultValue={props.data?.fetchBoard.title}
       />
       <br />
-      내용 :
+      내용:{" "}
       <input
         type='text'
         onChange={onChangeContents}
         defaultValue={props.data?.fetchBoard.contents}
       />
+      <br />
       <br />
       <button onClick={props.isEdit ? onClickUpdate : onClickSubmit}>
         {props.isEdit ? "수정" : "등록"}하기
@@ -135,4 +125,4 @@ const BoardsWrite = (props) => {
   );
 };
 
-export default BoardsWrite;
+export default BoardWrite;
