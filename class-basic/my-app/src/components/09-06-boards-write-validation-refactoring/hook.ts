@@ -34,7 +34,7 @@ export default function useBoardWrite(props) {
     });
     alert("등록이 완료되었습니다!");
     router.push(
-      `/section09/09-05-boards-validation-container-presentational-example/${result.data.createBoard.number}`
+      `/section09/09-06-boards-validation-hooks-refactoring/${result.data.createBoard.number}`
     );
   };
 
@@ -56,7 +56,7 @@ export default function useBoardWrite(props) {
     });
     alert("수정이 완료되었습니다!");
     router.push(
-      `/section09/09-05-boards-validation-container-presentational-example/${result.data.updateBoard.number}`
+      `/section09/09-06-boards-validation-hooks-refactoring/${result.data.updateBoard.number}`
     );
   };
 
