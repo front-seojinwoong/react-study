@@ -2,10 +2,11 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from "./queries";
+import { IMyVariables } from "./types";
 
-export default function useBoardWrite(props) {
+export default function useBoardWrite() {
   const router = useRouter();
   const params = useParams();
   const [createBoard] = useMutation(CREATE_BOARD);
@@ -15,13 +16,13 @@ export default function useBoardWrite(props) {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
-  const onChangeWriter = (e) => {
+  const onChangeWriter = (e: ChangeEvent<HTMLInputElement>) => {
     setWriter(e.target.value);
   };
-  const onChangeTitle = (e) => {
+  const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
-  const onChangeContents = (e) => {
+  const onChangeContents = (e: ChangeEvent<HTMLInputElement>) => {
     setContents(e.target.value);
   };
   const onClickSubmit = async () => {
@@ -39,7 +40,7 @@ export default function useBoardWrite(props) {
   };
 
   const onClickUpdate = async () => {
-    const myVariables = { myNumber: Number(params.number) };
+    const myVariables: IMyVariables = { myNumber: Number(params.number) };
 
     if (writer) myVariables.myWriter = writer;
     if (title) myVariables.myTitle = title;
