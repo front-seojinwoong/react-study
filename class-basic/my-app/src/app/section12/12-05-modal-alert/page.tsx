@@ -1,27 +1,20 @@
-"use client";
+"use client"
 
 import { Modal } from "antd";
 
-const page = () => {
+export default function ModalAlertPage() {
   const onClickSuccess = () => {
-    Modal.success({
-      content: "게시글 등록에 성공했습니다.",
-    });
+    Modal.success({ content: "게시글 등록에 성공했습니다!!" });
   };
 
   const onClickError = () => {
-    Modal.error({
-      title: "This is an error message",
-      content: "게시글 등록에 실패했습니다",
-    });
+    Modal.error({ content: "비밀번호가 틀렸습니다!!" });
   };
+
   return (
     <>
-      <button onClick={onClickError}>실패했을떄</button>
-      <br />
-      <button onClick={onClickSuccess}>성공했을때</button>
+      <button onClick={onClickSuccess}>성공했을때!!</button>
+      <button onClick={onClickError}>실패했을때!!</button>
     </>
   );
-};
-
-export default page;
+}

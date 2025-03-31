@@ -1,20 +1,16 @@
 "use client";
 
-import { CloseSquareOutlined } from "@ant-design/icons";
+import { UpCircleOutlined } from "@ant-design/icons";
 import { MouseEvent } from "react";
 
-// 대부분의 아이콘 라이브러리들은 <span/>를 부모로 하여 내부에 아이콘 이미지가 자식으로 들어감
-// 이미지 클릭시 부모로 onClick 이벤트가 전파됨
-const handleRemoveItem = (event: MouseEvent<HTMLSpanElement>) => {
-  alert(`${event.currentTarget.id}를 정말로 삭제하십니까?`);
-};
+export default function LibraryIconPage() {
+  const onClickDelete = (event: MouseEvent<HTMLSpanElement>) => {
+    // 대부분의 아이콘 라이브러리들은 <span />을 부모로 하여,
+    // 내부에 아이콘 이미지가 자식으로 들어있기 때문에,
+    // 이미지 클릭시 자식 이벤트가 부모로 전파됨
+    // alert(`${event.target.id}를 삭제할까요?`); // 비어있음
+    alert(`${event.currentTarget.id}를 삭제할까요?`); // ID있음
+  };
 
-const LibraryIconPage = () => {
-  return (
-    <div>
-      <CloseSquareOutlined id='삭제할게시글ID' onClick={handleRemoveItem} />
-    </div>
-  );
-};
-
-export default LibraryIconPage;
+  return <UpCircleOutlined id="삭제할게시글ID" onClick={onClickDelete} />;
+}
