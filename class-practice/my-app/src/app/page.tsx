@@ -1,5 +1,3 @@
-const Home = () => {
-  return <div>Home</div>;
-};
-
-export default Home;
+export default function Home() {
+  return <div>nextjs 첫페이지 입니다.</div>;
+}
