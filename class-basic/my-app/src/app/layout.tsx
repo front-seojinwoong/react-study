@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ApolloSetting from "@/commons/settings/06-02-apollo-setting";
+import Layout from "@/commons/layout";
 
 const 철수의폰트 = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,12 +19,19 @@ export const metadata: Metadata = {
   title: "철수의 홈페이지",
   description: "반갑습니다 철수의 홈페이지에 오신 것을 환영합니다!",
 };
-export default function RootLayout(props) {
+
+interface IProps {
+  children: React.ReactNode;
+}
+
+export default function RootLayout({ children }: IProps) {
   return (
     <html lang='en'>
       <body className={`${철수의폰트.variable} ${글로벌폰트.variable}`}>
         <div>여기는 레이아웃시작</div>
-        <ApolloSetting>{props.children}</ApolloSetting>
+        <ApolloSetting>
+          <Layout>{children}</Layout>
+        </ApolloSetting>
         <div>여기는 레이아웃끝</div>
       </body>
     </html>
