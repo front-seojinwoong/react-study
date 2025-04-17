@@ -1,0 +1,25 @@
+class Date {
+  qqq = 3
+
+  getFullYear() {
+
+  }
+
+  getMonth() {
+
+  }
+
+}
+
+// 인스턴스(date)
+const date = new Date(); 
+date.qqq;
+date.getFullYear();
+date.getMonth(); // 메서드
+
+const date2 = new Date();
+
+
+class superMonster extends Monster {
+  super();
+}

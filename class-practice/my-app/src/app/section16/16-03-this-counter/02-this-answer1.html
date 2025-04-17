@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this의 이해</title>
+  <script>
+
+    class Counter {
+      count = 10;
+
+      // 해결방법1) 화살표 함수로 바꾸기: 실행 주체가 바뀌어도 로직 상에서의 this를 유지함
+
+      handleUpCount = () => {
+        console.log('thisCount', this); // this: 카운터 Class
+      }
+
+      handleRenderButton = () => {
+        const btn = document.createElement("button");
+        btn.innerText = '카운트올리는버튼';
+        btn.addEventListener('click', this.handleUpCount); // this: 카운터 Class
+        document.body.appendChild(btn); 
+      }
+    }
+
+    window.onload = () => {
+      const counter = new Counter();
+      counter.handleRenderButton();
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

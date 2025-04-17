@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this의 이해</title>
+  <script>
+
+    class Counter {
+      count = 10
+
+      handleUpCount() {
+        console.log('thisCount', this); // this: 버튼 => 따라서 count가 없음. 왜냐 ? this는 실행 주체가 누구냐에 따라 바뀜
+      }
+
+      handleRenderButton() {
+        const btn = document.createElement("button");
+        btn.innerText = '카운트올리는버튼';
+        btn.addEventListener('click', this.handleUpCount); // this: 카운터 클래스 => 일반적으로 this는 현재 시각적으로 감싸고 있는 객체 또는 클래스이다.
+        document.body.appendChild(btn); 
+      }
+    }
+
+    window.onload = () => {
+      const counter = new Counter();
+      counter.handleRenderButton();
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>

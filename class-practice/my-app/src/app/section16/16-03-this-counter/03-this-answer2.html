@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this의 이해</title>
+  <script>
+
+    // 해결방법2) this가 변경되는 부분에, 미리 현재 로직상의 this를 연결(.bind)시켜 놓기
+    class Counter {
+      count = 10;
+
+      handleUpCount () {
+        console.log('thisCount', this); // this: 카운터 Class
+      }
+
+      handleRenderButton () {
+        const btn = document.createElement("button");
+        btn.innerText = '카운트올리는버튼';
+        btn.addEventListener('click', this.handleUpCount.bind(this)); 
+        document.body.appendChild(btn); 
+      }
+    }
+
+    window.onload = () => {
+      const counter = new Counter();
+      counter.handleRenderButton();
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
