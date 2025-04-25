@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "qqq": "ts-node decorator.ts"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

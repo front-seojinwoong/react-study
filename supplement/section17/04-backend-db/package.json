@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "qqq": "ts-node index.ts"
+  },
+  "dependencies": {
+    "pg": "^8.15.5",
+    "ts-node": "^10.9.2",
+    "typeorm": "^0.3.22"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
