@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script>
+            const onclickCallback = () => {
+                // 1. 랜던한 숫자를 받는 API (1~200)
+                const httpRequest = new XMLHttpRequest();
+                httpRequest.open("get", `http://numbersapi.com/random?min=1&max=200`);
+                httpRequest.send();
+                httpRequest.addEventListener("load", (res) => {
+                    console.log("res", res); // api 요청 결과
+                    const num = res.target.response.split(" ")[0];
+                    const httpRequest2 = new XMLHttpRequest();
+                    httpRequest2.open("get", `https://jsonplaceholder.typicode.com/todos/${num}`);
+                    httpRequest2.send();
+                    httpRequest2.addEventListener("load", (res) => {
+                        console.log("res2", res);
+                        const userId = JSON.parse(res.target.response).UserId; // api 요청결과
+
+                        const httpRequest3 = new XMLHttpRequest();
+                        httpRequest3.open("get", `https://jsonplaceholder.typicode.com/users/${userId}`);
+                        httpRequest3.send();
+                        httpRequest3.addEventListener("load", (res) => {
+                            console.log(res.target.response);
+                        });
+                    });
+                });
+            };
+            const onClickPromise = () => {
+                fetch(`http://numbersapi.com/random?min=1&max=200`)
+                    .then((res) => res.text())
+                    .then((qqq) => {
+                        const num = qqq.split(" ")[0]; // 랜덤 숫자
+                        return fetch(`https://jsonplaceholder.typicode.com/todos/${num}`);
+                    })
+                    .then((qqq) => qqq.json())
+                    .then((zzz) => {
+                        const userId = zzz.UserId; // 작성자 아이디
+                        return fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+                    })
+                    .then((res) => res.json())
+                    .then((kkk) => {
+                        console.log("최종결과", kkk);
+                    });
+            };
+            const onclickAsyncAwait = async () => {
+                const res1 = await fetch(`http://numbersapi.com/random?min=1&max=200`);
+                const qqq1 = await res1.text();
+                console.log("res1", res1);
+                console.log("qqq1", qqq1);
+
+                const res2 = await fetch(`https://jsonplaceholder.typicode.com/todos/${num}`);
+                const qqq2 = await res2.json();
+                const userId = qqq2.UserId;
+
+                const res3 = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+                const qqq3 = await res3.json();
+                console.log(qqq3);
+            };
+        </script>
+    </head>
+    <body>
+        <button onclick="onclickCallback()">callback연습</button>
+        <button onclick="onClickPromise()">promise 연습</button>
+        <button onclick="onclickAsyncAwait()">async-await연습</button>
+    </body>
+</html>
