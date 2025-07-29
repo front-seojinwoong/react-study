@@ -23,5 +23,3 @@ function LoginSuccessPage() {
 }
 
 export default with로그인체크(LoginSuccessPage);
-
-ReactNode;

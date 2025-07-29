@@ -4,8 +4,8 @@ import { gql, useQuery } from "@apollo/client";
 import { MouseEvent } from "react";
 
 const FETCH_BOARDS = gql`
-  query fetchBoards($page: Int) {
-    fetchBoards(page: $page) {
+  query fetchBoards777($mypage: Int) {
+    fetchBoards(page: $mypage) {
       _id
       writer
       title
@@ -24,7 +24,7 @@ export default function StaticRoutingMovedPage() {
   // };
 
   // 2. 리팩토링 후
-  const onClickPage = (page: number) => () => {
+  const onClickPage = (page: number) => (event) => {
     refetch({ page });
   };
 
