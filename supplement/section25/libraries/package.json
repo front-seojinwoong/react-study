@@ -1,6 +1,6 @@
 {
-  "name": "supercompany-ui",
-  "version": "1.1.0",
+  "name": "@jinwoongcodebox/ui",
+  "version": "1.1.1",
   "private": false,
   "main": "./src/index.ts",
   "scripts": {
