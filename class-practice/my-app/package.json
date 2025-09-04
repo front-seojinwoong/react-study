@@ -27,6 +27,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.61.1",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-quill": "^2.0.0",
     "supercompany-ui": "1.1.0",
     "swiper": "^11.2.6",
     "uuid": "^11.1.0",
